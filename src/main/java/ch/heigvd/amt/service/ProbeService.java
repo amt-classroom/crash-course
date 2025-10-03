@@ -22,6 +22,7 @@ public class ProbeService {
                 .getResultList();
     }
 
+    @Transactional
     public Probe createProbeIfNotExists(String url) {
         List<Probe> probes = em.createQuery(
                         "select p from Probe p where p.url = :url",
