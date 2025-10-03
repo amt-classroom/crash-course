@@ -1,0 +1,19 @@
+{#include layout}
+
+    {#title}Status Page{/title}
+
+    <div id="status">
+        {#include statusContent probe=probe lastStatus=lastStatus statusList=statusList /}
+    </div>
+
+    <script>
+        setInterval(function() {
+            fetch('/status/content?url={probe.url}')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('status').innerHTML = html;
+                });
+        }, 1000);
+    </script>
+
+{/include}

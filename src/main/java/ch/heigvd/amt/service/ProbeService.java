@@ -82,4 +82,26 @@ public class ProbeService {
         return status;
     }
 
+    public Status getLastStatus(Probe probe) {
+        List<Status> statuses = em.createQuery(
+                        "select s from Status s where s.probe = :probe order by s.timestamp desc",
+                        Status.class)
+                .setParameter("probe", probe)
+                .setMaxResults(1)
+                .getResultList();
+        if (statuses.isEmpty()) {
+            return null;
+        } else {
+            return statuses.get(0);
+        }
+    }
+
+    public List<Status> getStatusList(Probe probe) {
+        return em.createQuery(
+                        "select s from Status s where s.probe = :probe order by s.timestamp desc limit 100",
+                        Status.class)
+                .setParameter("probe", probe)
+                .getResultList();
+    }
+
 }

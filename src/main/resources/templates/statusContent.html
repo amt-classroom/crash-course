@@ -1,0 +1,35 @@
+<style>
+    .status {
+        display: flex;
+    }
+    .status div {
+        flex: 1;
+        margin: 1px;
+        margin-top: auto;
+    }
+</style>
+
+<h1>Status</h1>
+
+<table class="table table-borderless">
+    <tr>
+        <th>URL</th>
+        <td>{probe.url}</td>
+    </tr>
+    <tr>
+        <th>Timestamp</th>
+        <td>{lastStatus.timestamp}</td>
+    </tr>
+    <tr>
+        <th>Duration</th>
+        <td>{lastStatus.duration}</td>
+    </tr>
+</table>
+
+<div class="status">
+
+    {#for status in statusList}
+        <div data-up="{status.up}" style="background-color: {status.up ? 'green' : 'red'}; height: calc({status.up ? status.duration : 1000}px / 10)"></div>
+    {/for}
+
+</div>
