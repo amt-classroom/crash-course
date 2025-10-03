@@ -7,8 +7,11 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
+import java.util.StringJoiner;
+
 @Entity
-public class Probe {
+public class Probe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,5 +42,13 @@ public class Probe {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Probe.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("url='" + url + "'")
+                .toString();
     }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.Instant;
+import java.util.StringJoiner;
 
 @Entity
 public class Status {
@@ -72,5 +73,16 @@ public class Status {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Status.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("probe=" + probe)
+                .add("timestamp=" + timestamp)
+                .add("up=" + up)
+                .add("duration=" + duration)
+                .toString();
     }
 }
