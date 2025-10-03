@@ -1,0 +1,10 @@
+{#include layout}
+
+    {#title}Probes{/title}
+
+    <ul>
+    {#for probe in probes}
+        <li><a href="/status?url={probe.url}">{probe.url}</a></li>
+    {/for}
+    </ul>
+{/include}
